@@ -1,0 +1,26 @@
+{
+  "name": "trivia",
+  "version": "1.0.0",
+  "description": "A trivia application",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "webpack",
+    "build": "webpack --config prod.webpack.config.js -p"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "author": "Chad Ogden",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "eslint": "^5.5.0",
+    "eslint-loader": "^2.1.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.7"
+  }
+}

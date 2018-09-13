@@ -1,0 +1,39 @@
+body {
+    font-family: 'Shadows Into Light', cursive;
+    color: white;
+    background-image: url('../images/background.png');
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: rgba(37, 37, 37, 0.8);
+}
+.menu_item {
+    float: right;
+    display: block;
+    padding: 5px 15px;
+    font-size: 1.2em;
+}
+#app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    font-size: 3vw;
+    text-align: center;
+}
+section {
+    width: 60vw;
+    padding: 20px;
+    margin: auto;
+    font-size: 2vw;
+    font-weight: 800;
+    background: rgba(37, 37, 37, 0.8);
+}
+#answers {
+    margin-top: 15px;
+}
