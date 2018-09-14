@@ -94,10 +94,11 @@ nextQuestionButton.addEventListener('click',presentNextQuestion);
 document.getElementById('newGameLink').addEventListener('click', startNewGame);
 
 function startNewGame() {
-    startButton.removeEventListener('click', startNewGame);
     const quizInfo = newQuiz.initiateQuiz();
+    startButton.removeEventListener('click', startNewGame);
     quizInfo.then( (value) => {
-        startButton.style.display = "none";
+        startButton.style.display = 'none';
+        document.getElementById('final').style.display = 'none';
         setScore(0);
         populateQuizQuestion(value);
     }).catch( () => {
@@ -107,7 +108,6 @@ function startNewGame() {
 }
 
 function populateQuizQuestion(quizInfo) {
-    console.log(quizInfo[2]);
     let answerHtml = "";
     document.getElementById('questionText').innerHTML = quizInfo[0];
     quizInfo[1].forEach(function(element, index){
@@ -115,18 +115,19 @@ function populateQuizQuestion(quizInfo) {
                         '<label for="ans' + index +'">' + element + '</label></div>';
     });
     document.getElementById('answers').innerHTML = answerHtml;
-    nextQuestionButton.style.display = "none";
+    nextQuestionButton.style.display = 'none';
     quizInfo[2] ? nextQuestionButton.innerHTML = 'Finish Quiz' : nextQuestionButton.innerHTML = 'Next Question';
     submitAnswerButton.disabled = false;
-    document.getElementById('question').style.display = "unset";
+    document.getElementById('question').style.display = 'unset';
 }
 
 function submitAnswer() {
-    const answer = document.querySelector('input[name="answers"]:checked').value;
-    if(answer !== 'undefined'){
+    
+    const answer = document.querySelector('input[name="answers"]:checked');
+    if(answer !== null){
         submitAnswerButton.disabled = true;
-        processAnswer(answer);
-        nextQuestionButton.style.display = "unset";
+        processAnswer(answer.value);
+        nextQuestionButton.style.display = 'unset';
     } else {
         alert('Please select an answer first.')
     }
@@ -161,11 +162,13 @@ function presentNextQuestion() {
     }
 }
 function finishGame() {
-    document.getElementById('question').style.display = "none";
+    document.getElementById('question').style.display = 'none';
     if(score > 0) {
-        document.getElementById('goodScore').style.display = "unset";
+        document.getElementById('goodScore').style.display = 'unset';
     } else {
-        document.getElementById('badScore').style.display = "unset";
+        document.getElementById('badScore').style.display = 'unset';
     }
-    document.getElementById('final').style.display = "unset";
+    document.getElementById('final').style.display = 'unset';
+    startButton.style.display = 'unset';
+    startButton.addEventListener('click', startNewGame);
 }
