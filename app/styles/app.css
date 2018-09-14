@@ -11,10 +11,22 @@ ul {
     background: rgba(37, 37, 37, 0.8);
 }
 .menu_item {
-    float: right;
     display: block;
     padding: 5px 15px;
     font-size: 1.2em;
+}
+#gameScore {
+    float: right;
+}
+#newGame {
+    float: left;
+}
+#newGameLink {
+    color: white;
+    text-decoration: none;
+}
+#newGameLink:hover {
+    background-color: black;
 }
 #app {
     display: flex;

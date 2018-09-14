@@ -12,6 +12,10 @@ class Quiz {
     }
 
     initiateQuiz() {
+        this.questions = {};
+        this.currQuestionIndex = 0;
+        this.currAnswer = "";
+        this.allAnswers = [];
         let quizFetch = new Promise(
             (resolve, reject) => {
                  fetch('https://opentdb.com/api.php?amount=' + this.numberOfQuestions)
@@ -86,13 +90,15 @@ const scoreIncrement = 10;
 
 startButton.addEventListener('click', startNewGame);
 submitAnswerButton.addEventListener('click', submitAnswer);
-nextQuestionButton.addEventListener('click',presentNextQuestion)
+nextQuestionButton.addEventListener('click',presentNextQuestion);
+document.getElementById('newGameLink').addEventListener('click', startNewGame);
 
 function startNewGame() {
     startButton.removeEventListener('click', startNewGame);
     const quizInfo = newQuiz.initiateQuiz();
     quizInfo.then( (value) => {
         startButton.style.display = "none";
+        setScore(0);
         populateQuizQuestion(value);
     }).catch( () => {
         alert('There was an error loading the quiz. Please try again later.');
@@ -127,15 +133,21 @@ function submitAnswer() {
 }
 
 function processAnswer(answer) {
-    const scoreElements = Array.from(document.getElementsByClassName('score'));
     if(answer === newQuiz.answer){
-        score = score + scoreIncrement;
+        setScore(scoreIncrement);
     } else {
-        score = score - scoreIncrement
+        setScore(-scoreIncrement);
     }
     let answerItem = document.querySelectorAll('input[value="'+newQuiz.answer+'"]')[0].id;
     document.querySelectorAll('label[for="'+answerItem+'"]')[0].style.backgroundColor  = 'green';
-    //document.getElementsByClassName('score').innerHTML = score;
+}
+function setScore(scoreChange){
+    if(scoreChange === 0) {
+        score = 0;
+    } else {
+        score = score + scoreChange
+    }
+    const scoreElements = Array.from(document.getElementsByClassName('score'));
     scoreElements.forEach(function(element){
         element.innerHTML = score;
     });
