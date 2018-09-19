@@ -140,7 +140,7 @@ function processAnswer(answer) {
         setScore(-scoreIncrement);
     }
     let answerItem = document.querySelectorAll('input[value="'+newQuiz.answer+'"]')[0].id;
-    document.querySelectorAll('label[for="'+answerItem+'"]')[0].style.backgroundColor  = 'green';
+    document.querySelectorAll('label[for="'+answerItem+'"]')[0].parentNode.classList.add('correct');
 }
 function setScore(scoreChange){
     if(scoreChange === 0) {

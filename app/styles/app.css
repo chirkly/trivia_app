@@ -73,3 +73,11 @@ button:active {
 	position:relative;
 	top:1px;
 }
+.correct {
+    background-color:rgb(69, 172, 69);
+}
+.correct::after { 
+    content: "✔\00a0";
+    text-align: right;
+    float:right;
+}
